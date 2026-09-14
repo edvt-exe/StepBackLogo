@@ -7,36 +7,148 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>StepBackLogo</h1>
-        </header>
+    <div class="minimalist-background"></div>
 
-        <main>
-            <div class="image-wrapper">
-                <img id="logo-img" src="" alt="Guess the logo">
-            </div>
+    <div id="app">
+        <div id="dashboard-view" class="view active">
+            
+            <header class="floating-nav">
+                <div class="logo-wrapper">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" 
+                         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                        <path d="M9 18h6"/>
+                        <path d="M10 22h4"/>
+                    </svg>
+                    <span class="nav-title">StepBackLogo</span>
+                </div>
+                
+                <div class="nav-pills">
+                    <div class="profile-pill token-pill">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="#ffd60a" stroke-width="2.5" 
+                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v8"></path>
+                            <path d="M8 12h8"></path>
+                        </svg>
+                        <span id="nav-tokens">0</span>
+                    </div>
+                    <div class="profile-pill">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--accent-blue)" stroke-width="2.5" 
+                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span id="nav-streak">0</span>
+                    </div>
+                </div>
+            </header>
 
-            <div class="indicators" id="indicators">
-            </div>
+            <main class="dashboard-main">
+                <section class="hero-section">
+                    <h1>Zoom out.<br><span class="text-gradient">Guess the brand.</span></h1>
+                    <p>Earn tokens for quick guesses. Use them to unlock hints or extra lives!</p>
+                </section>
 
-            <div class="input-section" id="input-section">
-                <input type="text" id="guess-input" placeholder="Enter brand name..." autocomplete="off">
-                <button id="guess-btn">Guess</button>
-            </div>
+                <section class="levels-grid" id="levels-grid">
+                </section>
 
-            <div class="result-section hidden" id="result-section">
-                <h2 id="result-message"></h2>
-                <p id="correct-answer" class="hidden"></p>
-                <button id="share-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                    Share
+                <button id="reroll-btn" class="btn-ghost reroll-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" 
+                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    Reroll All Packs (-100)
                 </button>
+            </main>
+        </div>
+
+        <div id="game-view" class="view hidden">
+            
+            <header class="game-header floating-nav game-nav">
+                <button id="back-btn" class="icon-text-btn">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--accent-blue)" stroke-width="2.5" 
+                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Back
+                </button>
+                <div class="nav-center">
+                    <h2 id="level-title" class="nav-title">Easy</h2>
+                    <span id="level-progress-text" class="nav-subtitle">1/5</span>
+                </div>
+                <div class="profile-pill token-pill">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="#ffd60a" stroke-width="2.5" fill="none">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v8"></path>
+                        <path d="M8 12h8"></path>
+                    </svg>
+                    <span id="game-nav-tokens">0</span>
+                </div>
+            </header>
+
+            <main class="game-main">
+                <div class="category-glow" id="category-glow"></div>
+                
+                <div class="image-glass-container" id="image-container">
+                    <img id="logo-img" src="" alt="Guess the logo">
+                </div>
+
+                <div class="lives-container" id="lives-container">
+                </div>
+
+                <div class="controls-container">
+                    <div class="input-wrapper" id="input-wrapper">
+                        <input type="text" id="guess-input" placeholder="Type brand name..." autocomplete="off">
+                    </div>
+                    
+                    <button id="guess-btn" class="btn-glow">Submit Guess</button>
+                    
+                    <div class="powerups-row">
+                        <button id="buy-hint-btn" class="btn-powerup">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Hint (-15)
+                        </button>
+                        <button id="buy-life-btn" class="btn-powerup">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            +1 Life (-30)
+                        </button>
+                    </div>
+
+                    <button id="skip-btn" class="btn-ghost">I don't know (Skip)</button>
+                </div>
+            </main>
+
+            <div id="result-modal-overlay" class="modal-overlay hidden">
+                <div class="ios-modal" id="result-modal">
+                    <div id="modal-icon" class="modal-icon"></div>
+                    <h3 id="result-title">Spot On!</h3>
+                    <p id="correct-answer"></p>
+                    <div id="reward-display" class="reward-display hidden">
+                        +<span id="reward-amount">0</span> 
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="#ffd60a" stroke-width="2.5" fill="none">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v8"></path>
+                            <path d="M8 12h8"></path>
+                        </svg>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="next-btn" class="btn-modal-primary hidden">Next Logo</button>
+                        <button id="finish-cat-btn" class="btn-modal-secondary hidden">Back to Menu</button>
+                    </div>
+                </div>
             </div>
-        </main>
+        </div>
     </div>
 
-    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+    <div id="toast" class="toast hidden">Action unavailable</div>
 
     <script src="script.js"></script>
 </body>
